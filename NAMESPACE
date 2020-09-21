@@ -1,0 +1,12 @@
+
+export(lcra)
+importFrom(rlang, expr)
+importFrom(rlang, quo_get_expr)
+importFrom(rlang, quo)
+importFrom(coda, as.mcmc.list)
+importFrom(rjags, coda.samples)
+importFrom(rjags, jags.model)
+importFrom(stats, model.matrix)
+importFrom("graphics", "layout", "lines", "mtext", "par", "points",
+               "strheight", "strwidth", "text", "plot")
+importFrom("stats", "C", "median", "quantile", "step", "window")

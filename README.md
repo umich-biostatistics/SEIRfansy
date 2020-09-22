@@ -90,29 +90,29 @@ pars_start = c(c(1,0.8,0.6,0.4,0.2), c(0.2,0.2,0.2,0.25,0.2))
 phases = c(1,15,34,48,62)
 ```
 
-## estimateR
+## SEIRfansy()
 
-If interest is in model estimation and not prediction, then use
-`estimateR()`
+If interest is in model estimation but not prediction, then use
+`SEIRfansy()`. Otherwise, use `predict()` (see below).
 
 ``` r
-?estimateR
+?SEIRfansy
 ```
 
 ``` r
-cov19est = model_estimateR(data = train_multinom, init_pars = pars_start, 
-                           data_init = data_initial, niter = 1e3, BurnIn = 1e2, 
-                           model = "Multinomial", N = N, lambda = 1/(69.416 * 365), 
-                           mu = 1/(69.416 * 365), period_start = phases, opt_num = 1, 
-                           auto.initialize = TRUE, f = 0.15)
+cov19est = SEIRfansy(data = train_multinom, init_pars = pars_start, 
+                     data_init = data_initial, niter = 1e3, BurnIn = 1e2, 
+                     model = "Multinomial", N = N, lambda = 1/(69.416 * 365), 
+                     mu = 1/(69.416 * 365), period_start = phases, opt_num = 1, 
+                     auto.initialize = TRUE, f = 0.15)
 ```
 
 Inspect the results:
 
 ``` r
-names(Result)
-class(Result$mcmc_pars)
-names(Result$plots)
+names(cov19est)
+class(cov19est$mcmc_pars)
+names(cov19est$plots)
 ```
 
 Plot the results:
@@ -122,26 +122,31 @@ plot(cov19est, type = "trace")
 plot(cov19est, type = "box")
 ```
 
-## predictR
+## predict()
 
-If interest is in model estimation and prediction, then use `predictR()`
-on the `estimateR` result.
+If interest is in model estimation and prediction, then use `predict()`,
+which first runs `SEIRfansy()` internally, and then predicts.
 
 ``` r
-cov19pred = model_predictR(data = data_multinomial, init_pars = pars_start, 
-                           data_init = data_initial, T_predict = 60, niter = 1e5, 
-                           BurnIn = 1e5, data_test = data_test, model = "Multinomial", 
-                           N = N, lambda = 1/(69.416 * 365), mu = 1/(69.416 * 365), 
-                           period_start = phases, opt_num = 1, auto.initialize=TRUE, f=0.15)
+?predict
+```
+
+``` r
+cov19pred = predict(data = data_multinomial, init_pars = pars_start, 
+                    data_init = data_initial, T_predict = 60, niter = 1e5, 
+                    BurnIn = 1e5, data_test = data_test, model = "Multinomial", 
+                    N = N, lambda = 1/(69.416 * 365), mu = 1/(69.416 * 365), 
+                    period_start = phases, opt_num = 1, 
+                    auto.initialize = TRUE, f = 0.15)
 ```
 
 Inspect the results:
 
 ``` r
-names(Result)
-class(Result$prediction)
-class(Result$mcmc_pars)
-names(Result$plots)
+names(cov19pred)
+class(cov19pred$prediction)
+class(cov19pred$mcmc_pars)
+names(cov19pred$plots)
 ```
 
 Plot the results:

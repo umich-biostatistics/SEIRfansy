@@ -53,7 +53,7 @@ Training data set:
 For training data, we use cases from April 1 to June 30
 
 ```{r, eval = FALSE}
-train = covid19[which(data$Date == "01 April "):which(data$Date == "30 June "),]
+train = covid19[which(covid19$Date == "01 April "):which(covid19$Date == "30 June "),]
 ```
 
 Testing data set:
@@ -61,7 +61,7 @@ Testing data set:
 For testing data, we use cases from July 1 to July 31
 
 ```{r, eval = FALSE}
-test = covid19[which(data$Date == "01 July "):which(data$Date == "31 July "),]
+test = covid19[which(covid19$Date == "01 July "):which(covid19$Date == "31 July "),]
 ```
 
 Data format for multinomial and Poisson distribution:
@@ -72,19 +72,19 @@ train_multinom =
   rename(Confirmed = Daily.Confirmed, 
          Recovered = Daily.Recovered,
          Deceased = Daily.Deceased) %>%
-  select(Confirmed, Recovered, Deceased)
+  dplyr::select(Confirmed, Recovered, Deceased)
 
 test_multinom = 
   test %>% 
   rename(Confirmed = Daily.Confirmed, 
          Recovered = Daily.Recovered,
          Deceased = Daily.Deceased) %>%
-  select(Confirmed, Recovered, Deceased)
+  dplyr::select(Confirmed, Recovered, Deceased)
 
 train_pois = 
   train %>% 
   rename(Confirmed = Daily.Confirmed) %>%
-  select(Confirmed)
+  dplyr::select(Confirmed)
 ```
 
 Initialize parameters:
@@ -96,12 +96,12 @@ pars_start = c(c(1,0.8,0.6,0.4,0.2), c(0.2,0.2,0.2,0.25,0.2))
 phases = c(1,15,34,48,62)
 ```
 
-## SEIRfansy
+## SEIRfansy()
 
 If interest is in model estimation but not prediction, then use `SEIRfansy()`. Otherwise, use `predict()` (see below).
 
 ```{r, eval = FALSE}
-?estimateR
+?SEIRfansy
 ```
 
 ```{r, eval = FALSE}
@@ -127,16 +127,21 @@ plot(cov19est, type = "trace")
 plot(cov19est, type = "box")
 ```
 
-## predict
+## predict()
 
-If interest is in model estimation and prediction, then use `predict()`, which first runs `SEIRfansy` internally, and then predicts.
+If interest is in model estimation and prediction, then use `predict()`, which first runs `SEIRfansy()` internally, and then predicts.
+
+```{r, eval = FALSE}
+?predict
+```
 
 ```{r, eval = FALSE}
 cov19pred = predict(data = data_multinomial, init_pars = pars_start, 
                     data_init = data_initial, T_predict = 60, niter = 1e5, 
                     BurnIn = 1e5, data_test = data_test, model = "Multinomial", 
                     N = N, lambda = 1/(69.416 * 365), mu = 1/(69.416 * 365), 
-                    period_start = phases, opt_num = 1, auto.initialize=TRUE, f=0.15)
+                    period_start = phases, opt_num = 1, 
+                    auto.initialize = TRUE, f = 0.15)
 ```
 
 Inspect the results:

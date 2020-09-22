@@ -147,10 +147,14 @@ SEIRfansy <- function(data, data_init,N, init_pars = NULL, niter = 1e5, BurnIn =
   if(plot == TRUE){
     plots <- model_plotR(mcmc_pars = pars_estimate, n_period = length(period_start), data = data,
                          data_initial = data_initial, call = "estimateR", model = model, ...)
-    return(list(mcmc_pars = pars_estimate, "plots" = plots))
+    rlist = list(mcmc_pars = pars_estimate, "plots" = plots)
+    class(rlist) = "SEIRfansy"
+    return(rlist)
   }
 
-  return(list(mcmc_pars = pars_estimate))
+  rlist = list(mcmc_pars = pars_estimate)
+  class(rlist) = "SEIRfansy"
+  return(rlist)
 }
 
 

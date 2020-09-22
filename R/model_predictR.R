@@ -1,17 +1,49 @@
-#' This function is used to predict the total reported as well as unreported case counts, total recovered and total deaths
+
+#' Prediction for SEIRfansy Model
+#' 
+#' This function is used to predict the total reported as well as unreported case 
+#' counts, total recovered, and total deaths
 #'
-#' @param data  (Mandatory) input : Mainly the training dataset. If the model is Multinomial then the data matrix should contain 3 columns namely Confirmed,Recovered and Death, while if the model is Poisson or Binomial, then the data should contain only one column namely Confirmed. Please see that the names of the colums are maintained.
-#' @param data_init (Mandatory) This is the initial data values that should be provided by the user which is a six size length vector. The first entry should contain the Total Confirmed, Total Recovered ,Total Death , Daily Confirmed ,Daily Recovered and Daily Death for the Starting Date. If the starting total confirmed is 0 , please replace it by 1.
-#' @param init_pars  = NULL( default) . Else the user can give a user input initial paramters which should consist of the initial values of the time varying beta , proportion of testing for the different periods.
+#' @param data  (Mandatory) input : Mainly the training dataset. If the model is 
+#' Multinomial then the data matrix should contain 3 columns namely Confirmed, 
+#' Recovered and Death, while if the model is Poisson or Binomial, then the data 
+#' should contain only one column namely Confirmed. Please see that the names of 
+#' the colums are maintained.
+#' @param data_init (Mandatory) This is the initial data values that should be 
+#' provided by the user which is a six size length vector. The first entry should 
+#' contain the Total Confirmed, Total Recovered ,Total Death , Daily Confirmed , 
+#' Daily Recovered and Daily Death for the Starting Date. If the starting total 
+#' confirmed is 0 , please replace it by 1.
+#' @param init_pars  = NULL( default) . Else the user can give a user input initial 
+#' parameters which should consist of the initial values of the time varying beta , 
+#' proportion of testing for the different periods.
 #' @param N (Mandatory) : The population size.
-#' @param plot =TRUE . If estimate = FALSE , this will give two plots , one is the panel plot for total cases, total recovered, total death and total confirmed if the model is Multinomial , else it will give only a plot for total confirmed when the model is binomial or poisson and the second plot is the plot of untested, false negative and reported cases. And when estimate=  TRUE , then it will give two other plots along with the previous two plots. One is the box plot for basic reproduction number and the other one is the trace plot for the convergence of the mcmc paramters.
-#' @param T_predict  It is the no of days that we want to predict after the train period. The value of T_predict should be atleast greater than equal to  the no of rows for the data_test.
-#' @param period_start The total time period is divided into small periods depending on the lockdowm measures imposed by the goverment. So this is a vector consisting of the start dates for the different time periods.
-#' @param estimate = TRUE (default) If it is TRUE then it will run the MCMC algorithm to estimate the parameters. Else if it is FALSE then the user needs to give input the paramter values in the pars argument.
-#' @param pars = NULL (default) .If estimate = FALSE, then the user need to give input the paramter estimates .
-#' @param data_test = NULL ( default). Else the person needs to give to give the test data for comparing with the model estimates.
-#' @param auto.initialize = TRUE(default) This is the option for using a mle based initial parameter.
-#' @param ... arguments passed to the function model_estimateR, model_initializeR and model_plotR which is used for the initializing the parameters. The parameters are described below:
+#' @param plot =TRUE . If estimate = FALSE , this will give two plots , one is 
+#' the panel plot for total cases, total recovered, total death and total 
+#' confirmed if the model is Multinomial , else it will give only a plot for total 
+#' confirmed when the model is binomial or poisson and the second plot is the plot 
+#' of untested, false negative and reported cases. And when estimate=  TRUE , 
+#' then it will give two other plots along with the previous two plots. One is the 
+#' box plot for basic reproduction number and the other one is the trace plot for 
+#' the convergence of the mcmc paramters.
+#' @param T_predict  It is the no of days that we want to predict after the train 
+#' period. The value of T_predict should be atleast greater than equal to  the no 
+#' of rows for the data_test.
+#' @param period_start The total time period is divided into small periods depending 
+#' on the lockdowm measures imposed by the goverment. So this is a vector consisting 
+#' of the start dates for the different time periods.
+#' @param estimate = TRUE (default) If it is TRUE then it will run the MCMC algorithm 
+#' to estimate the parameters. Else if it is FALSE then the user needs to give 
+#' input the paramter values in the pars argument.
+#' @param pars = NULL (default) .If estimate = FALSE, then the user need to give 
+#' input the paramter estimates .
+#' @param data_test = NULL ( default). Else the person needs to give to give the 
+#' test data for comparing with the model estimates.
+#' @param auto.initialize = TRUE(default) This is the option for using a mle 
+#' based initial parameter.
+#' @param ... arguments passed to the function model_estimateR, model_initializeR 
+#' and model_plotR which is used for the initializing the parameters. The 
+#' parameters are described below:
 #'            \itemize{
 #'                 \item{"niter"}{= 1e5 (default)  No of iteration for the MCMC metropolis hasting algorithm.}
 #'                 \item{"BurnIn"}{ = 5e4 (default) This is the Burn-In Period for the MCMC algorithm}

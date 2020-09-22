@@ -96,9 +96,9 @@ pars_start = c(c(1,0.8,0.6,0.4,0.2), c(0.2,0.2,0.2,0.25,0.2))
 phases = c(1,15,34,48,62)
 ```
 
-## estimateR
+## SEIRfansy
 
-If interest is in model estimation and not prediction, then use `estimateR()`
+If interest is in model estimation but not prediction, then use `SEIRfansy()`. Otherwise, use `predict()` (see below).
 
 ```{r, eval = FALSE}
 ?estimateR
@@ -127,9 +127,9 @@ plot(cov19est, type = "trace")
 plot(cov19est, type = "box")
 ```
 
-## predictR
+## predict
 
-If interest is in model estimation and prediction, then use `predictR()` on the `estimateR` result.
+If interest is in model estimation and prediction, then use `predict()`, which first runs `SEIRfansy` internally, and then predicts.
 
 ```{r, eval = FALSE}
 cov19pred = predict(data = data_multinomial, init_pars = pars_start, 

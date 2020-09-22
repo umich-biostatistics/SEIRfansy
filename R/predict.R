@@ -41,7 +41,7 @@
 #' test data for comparing with the model estimates.
 #' @param auto.initialize = TRUE(default) This is the option for using a mle 
 #' based initial parameter.
-#' @param ... arguments passed to the function model_estimateR, model_initializeR 
+#' @param ... arguments passed to the function SEIRfansy, model_initializeR 
 #' and model_plotR which is used for the initializing the parameters. The 
 #' parameters are described below:
 #'            \itemize{
@@ -71,7 +71,7 @@
 #'
 #' @examples
 
-model_predictR <- function(data=NULL, data_init, init_pars = NULL, N, plot = TRUE, T_predict, period_start, estimate = TRUE,
+predict <- function(data=NULL, data_init, init_pars = NULL, N, plot = TRUE, T_predict, period_start, estimate = TRUE,
                            pars = NULL, data_test = NULL, auto.initialize = TRUE, ... ){
   if(estimate == FALSE && is.null(pars)) stop("Either supply parameters or set estimate = TRUE")
   if(estimate == FALSE){
@@ -79,7 +79,7 @@ model_predictR <- function(data=NULL, data_init, init_pars = NULL, N, plot = TRU
   }  else{
     cat("Estimating ... ", fill = TRUE)
     cat("  ", fill = TRUE)
-    mcmc_estimate = model_estimateR(data = data, data_init = data_init, init_pars = init_pars, N = N,
+    mcmc_estimate = SEIRfansy(data = data, data_init = data_init, init_pars = init_pars, N = N,
                                     period_start = period_start, plot = plot, auto.initialize = auto.initialize,...)
     mcmc_pars = mcmc_estimate$mcmc_pars
     if(plot == TRUE) plots_estimateR = mcmc_estimate$plots

@@ -111,7 +111,7 @@
 #'
 #' @examples
 
-model_estimateR <- function(data, data_init,N, init_pars = NULL, niter = 1e5, BurnIn = 5e3,
+SEIRfansy <- function(data, data_init,N, init_pars = NULL, niter = 1e5, BurnIn = 5e3,
                             model = "Multinomial", plot = TRUE, period_start, auto.initialize = TRUE,
                             ... ){
   library(dplyr)

@@ -1,34 +1,36 @@
-Package: lcra
-Version: 1.1.2
-Title: Bayesian Joint Latent Class and Regression Models
 Type: Package
-Description: For fitting Bayesian joint latent class and regression models using
-    Gibbs sampling. See the documentation for the model.
-    The technical details of the model implemented here are described in Elliott,
-    Michael R., Zhao, Zhangchen, Mukherjee, Bhramar, Kanaya, Alka, Needham,
-    Belinda L., "Methods to account for uncertainty in latent class assignments when
-    using latent classes as predictors in regression models, with application to
-    acculturation strategy measures" (2020) In press at Epidemiology
-    <doi:10.1097/EDE.0000000000001139>.
+Package: SEIRfansy
+Title: Extended Susceptible-Exposed-Infected-Recovery Model
+Version: 1.0.0.9000
+Description: Extended Susceptible-Exposed-Infected-Recovery (SEIR) Model for 
+    handling high false negative rate and symptom based administration of 
+    diagnostic tests.
 Authors@R: c(
-    person(given = "Michael", family = "Elliot", role = c("aut"), email = "mrelliot@umich.edu"),
-    person(given = "Zhangchen", family = "Zhao", role = c("aut"), email = "zczhao@umich.edu"),
-    person(given = "Michael", family = "Kleinsasser", role = c("aut", "cre"), email = "mkleinsa@umich.edu"))
+    person(given = "Ritwik", family = "Bhaduri", role = c("aut"), email = "ritwik.bhaduri@gmail.com"),
+    person(given = "Ritoban", family = "Kundu", role = c("aut"), email = "ritoban.kundu@gmail.com"),
+    person(given = "Soumik", family = "Purkayastha", role = c("aut"), email = "soumikp@umich.edu"),
+    person(given = "Lauren", family = "Beesley", role = c("aut"), email = "lbeesley@umich.edu"),
+    person(given = "Bhramar", family = "Mukherjee", role = c("aut"), email = "bhramar@umich.edu"),
+    person(given = "Michael", family = "Kleinsasser", role = c("cre"), email = "mkleinsa@umich.edu")
+    )
+Maintainer: Michael Kleinsasser <mkleinsa@umich.edu>
 License: GPL-2
 Encoding: UTF-8
 LazyData: true
 Biarch: true
 Depends: 
-    R (>= 3.4.0)
-Imports: 
-    rlang,
-    coda,
-    rjags
-Suggests:
-    R2WinBUGS,
-    gtools
-SystemRequirements: JAGS 4.x.y or WinBUGS 1.4
-URL: https://github.com/umich-biostatistics/lcra
-BugReports: https://github.com/umich-biostatistics/lcra/issues
+    R (>= 3.5.1)
+Imports:
+    dplyr,
+    arm,
+    pbapply,
+    DescTools,
+    patchwork,
+    ggpubr,
+    ggplot2
+URL: https://github.com/umich-biostatistics/SEIRfansy
+BugReports: https://github.com/umich-biostatistics/SEIRfansy/issues
 RoxygenNote: 7.1.1
 Roxygen: list(markdown = TRUE)
+VignetteBuilder: 
+    knitr

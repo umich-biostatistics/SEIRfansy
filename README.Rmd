@@ -66,7 +66,7 @@ test = covid19[which(data$Date == "01 July "):which(data$Date == "31 July "),]
 
 Data format for multinomial and Poisson distribution:
 
-```{r}
+```{r, eval = FALSE}
 train_multinom = 
   train %>% 
   rename(Confirmed = Daily.Confirmed, 

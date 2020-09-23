@@ -1,3 +1,4 @@
+
 model_stochastic_simulateR <- function(init_obs_current, init_obs_daily, period_start, times, pars, fix_pars, T_predict, ...){
   stochastic_sampleR <- function(stage_pars, fix_pars, old_values) {
     ## stage pars

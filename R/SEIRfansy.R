@@ -106,7 +106,13 @@
 #'
 #'
 #'
-#' @return
+#' @return A list with class "SEIRfansy", which contains the items described 
+#' below:
+#' \itemize{
+#'   \item{mcmc_pars}{a matrix of the mcmc draws for the parameters}
+#'   \item{plots}{a list of ggplot objects}
+#' }
+#' 
 #' @export
 #'
 #' @examples
@@ -114,7 +120,7 @@
 SEIRfansy <- function(data, data_init,N, init_pars = NULL, niter = 1e5, BurnIn = 5e3,
                             model = "Multinomial", plot = TRUE, period_start, auto.initialize = TRUE,
                             ... ){
-  library(dplyr)
+  #library(dplyr)
 
   if(model == "Multinomial"){
     if(! all(c("Confirmed", "Recovered", "Deceased" ) %in% colnames(data))){
@@ -156,5 +162,3 @@ SEIRfansy <- function(data, data_init,N, init_pars = NULL, niter = 1e5, BurnIn =
   class(rlist) = "SEIRfansy"
   return(rlist)
 }
-
-

@@ -1,3 +1,4 @@
+
 par_initializeR <- function(data,model="Multinomial", init_pars, period_start, init_state_num, fix_pars, opt_num = 100,... ) {
  
   if(period_start[1]==1){

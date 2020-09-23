@@ -21,10 +21,14 @@ plot.SEIRfansy = function(x, type, ...) {
 #' 
 #' @export
 plot.SEIRfansyPredict = function(x, type, ...) {
-  if(!(type %in% c("panel", "cases"))) stop("You must select one of panel or cases.")
+  if(!(type %in% c("trace", "boxplot", "panel", "cases"))) stop("You must select one of panel or cases.")
   if(type == "panel") {
     plot(x$plots[["panel_plot_fit"]])
   } else if(type == "cases") {
     plot(x$plots[["plot_detected_undetected"]])
+  } else if(type == "trace") {
+    plot(x$plots[["trace_plot"]])
+  } else if(type == "boxplot"){
+    plot(x$plots[["boxplot_R0"]])
   }
 }

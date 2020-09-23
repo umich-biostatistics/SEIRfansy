@@ -66,7 +66,12 @@
 #'                 \item{"trace_plot.common_axis"}{=FALSE(Default) This will give the trace plot for  the convergence of the mcmc estimated time varying parameters}
 #'                 \item{"save plot"}{=TRUE (Default) It is the option for saving the plots in the directory folder.}
 #'
-#' @return if estimate =
+#' @return A list with class "SEIRfansyPredict", which contains the items described 
+#' below:
+#' \itemize{
+#'   \item{mcmc_pars}{a matrix of the mcmc draws for the parameters}
+#'   \item{plots}{a list of ggplot objects}
+#' }
 #' @export
 #'
 #' @examples
@@ -91,7 +96,7 @@ predict <- function(data=NULL, data_init, init_pars = NULL, N, plot = TRUE, T_pr
   init_state_num = var_init$init_state_num
   period_start = var_init$period_start
 
-  library(pbapply)
+  #library(pbapply)
   cat(" ", fill = TRUE)
   cat("Predicting ... ", fill = TRUE)
   pboptions(type="txt", char="|")
@@ -112,9 +117,11 @@ predict <- function(data=NULL, data_init, init_pars = NULL, N, plot = TRUE, T_pr
                                   data = data, data_test = data_test, data_initial = data_initial,
                                   call = "predictR", ...)
     Result$plots = c(plots_estimateR, plots_predictR)
+    class(Result) = "SEIRfansyPredict"
     return(Result)
   }
 
+  class(Result) = "SEIRfansyPredict"
   return(Result)
 
 }

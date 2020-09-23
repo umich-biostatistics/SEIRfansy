@@ -1,3 +1,4 @@
+
 R0_calculateR <- function(estpar, fix_pars){
   alpha_p = fix_pars["alpha_p"]
   alpha_u = fix_pars["alpha_u"]

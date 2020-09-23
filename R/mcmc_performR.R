@@ -1,3 +1,4 @@
+
 mcmc_performR <- function(data, period_start, init_state_num, init_pars, fix_pars,
                           niter = 1e5, BurnIn = 5e3, model = "Multinomial", trace_num = 100,
                           step_pars = init_pars/500, ... ){

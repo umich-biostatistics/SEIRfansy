@@ -1,3 +1,4 @@
+
 model_plotR <- function(Result = NULL, mcmc_pars = NULL, T_predict = NULL, T_simu = NULL, n_period, data,
                         data_test = NULL, data_initial, call, save_plots = TRUE, trace_plot.common_axis = FALSE, model = "Multinomial", ...){
 
@@ -9,7 +10,7 @@ model_plotR <- function(Result = NULL, mcmc_pars = NULL, T_predict = NULL, T_sim
                                   variable_index = rep(rep(as.character(1:(ncol(pars_estimate)/3)), each = nrow(pars_estimate)), times = 3),
                                   iteration = rep(1:nrow(pars_estimate), times = ncol(pars_estimate)))
 
-    library(ggplot2)
+    #library(ggplot2)
 
     trace_plot_theme <-   theme_minimal() +
       theme(
@@ -60,7 +61,7 @@ model_plotR <- function(Result = NULL, mcmc_pars = NULL, T_predict = NULL, T_sim
                           phase = rep(unlist(lapply(1:n_period, function(x) paste0("Period ", x))), each = nrow(R0_pred)))
 
     fun_color_range <- colorRampPalette(c( "#00A972", "#007FA9"))
-    library(DescTools)
+    #library(DescTools)
     my_colors <- fun_color_range(n_period)
 
     R0_theme <-   theme_minimal() +
@@ -79,7 +80,7 @@ model_plotR <- function(Result = NULL, mcmc_pars = NULL, T_predict = NULL, T_sim
         legend.position = "bottom"
       )
 
-    library("patchwork")
+    #library("patchwork")
     boxplot_R0 <- ggplot(data_R0, aes(x = phase, y=value, fill = phase, color = phase)) +
       geom_boxplot(alpha = 0.8, outlier.alpha = 0.2) +
       stat_summary(aes(fill = phase), fun =mean, geom="point", shape=18, size=4,show.legend = FALSE) +
@@ -224,7 +225,7 @@ model_plotR <- function(Result = NULL, mcmc_pars = NULL, T_predict = NULL, T_sim
       scale_color_manual(values = c("#C32900", "#3CAEA3", "#0472cf", "#173F5F"))
 
 
-    library(ggpubr)
+    #library(ggpubr)
     panel_plot_fit <- ggarrange(plot_current_case + theme(legend.position = "none"),
                                 plot_total_case + theme(legend.position = "none"),
                                 plot_recovery + theme(legend.position = "none"),

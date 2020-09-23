@@ -1,3 +1,4 @@
+
 model_initializeR <- function(data=NULL, data_init, init_pars, model = "Multinomial", period_start,
                   alpha_p = 0.5, alpha_u = 0.7, beta_1 = 0.6, beta_2 = 0.7, delta_1 = 0.3, delta_2 = 0.7,
                   lambda = 1 / (66.26 * 365), mu = 1 / (66.26 * 365), D_d = 17.8, De = 5.2,

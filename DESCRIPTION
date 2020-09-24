@@ -20,7 +20,7 @@ LazyData: true
 Biarch: true
 Depends: 
     R (>= 3.5.1)
-Imports:
+Suggests:
     dplyr,
     arm,
     pbapply,

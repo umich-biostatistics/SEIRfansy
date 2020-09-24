@@ -129,7 +129,12 @@ the plots in the directory folder.}
 }}
 }
 \value{
-
+A list with class "SEIRfansy", which contains the items described
+below:
+\itemize{
+\item{mcmc_pars}{a matrix of the mcmc draws for the parameters}
+\item{plots}{a list of ggplot objects}
+}
 }
 \description{
 This function is used to estimate  the  different parameters of interest like

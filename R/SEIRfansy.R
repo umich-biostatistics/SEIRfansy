@@ -121,7 +121,11 @@ SEIRfansy <- function(data, data_init,N, init_pars = NULL, niter = 1e5, BurnIn =
                             model = "Multinomial", plot = TRUE, period_start, auto.initialize = TRUE,
                             ... ){
   #library(dplyr)
-
+  library(arm)
+  library(pbapply)
+  library(DescTools)
+  library("patchwork")
+  
   if(model == "Multinomial"){
     if(! all(c("Confirmed", "Recovered", "Deceased" ) %in% colnames(data))){
       stop("Data does not contain required columns")

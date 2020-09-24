@@ -69,7 +69,12 @@ test data for comparing with the model estimates.}
 based initial parameter.}
 }
 \value{
-if estimate =
+A list with class "SEIRfansyPredict", which contains the items described
+below:
+\itemize{
+\item{mcmc_pars}{a matrix of the mcmc draws for the parameters}
+\item{plots}{a list of ggplot objects}
+}
 }
 \description{
 This function is used to predict the total reported as well as unreported case

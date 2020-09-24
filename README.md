@@ -47,7 +47,7 @@ Training data set:
 For training data, we use cases from April 1 to June 30
 
 ``` r
-train = covid19[which(data$Date == "01 April "):which(data$Date == "30 June "),]
+train = covid19[which(covid19$Date == "01 April "):which(covid19$Date == "30 June "),]
 ```
 
 Testing data set:
@@ -55,7 +55,7 @@ Testing data set:
 For testing data, we use cases from July 1 to July 31
 
 ``` r
-test = covid19[which(data$Date == "01 July "):which(data$Date == "31 July "),]
+test = covid19[which(covid19$Date == "01 July "):which(covid19$Date == "31 July "),]
 ```
 
 Data format for multinomial and Poisson distribution:
@@ -66,19 +66,19 @@ train_multinom =
   rename(Confirmed = Daily.Confirmed, 
          Recovered = Daily.Recovered,
          Deceased = Daily.Deceased) %>%
-  select(Confirmed, Recovered, Deceased)
+  dplyr::select(Confirmed, Recovered, Deceased)
 
 test_multinom = 
   test %>% 
   rename(Confirmed = Daily.Confirmed, 
          Recovered = Daily.Recovered,
          Deceased = Daily.Deceased) %>%
-  select(Confirmed, Recovered, Deceased)
+  dplyr::select(Confirmed, Recovered, Deceased)
 
 train_pois = 
   train %>% 
   rename(Confirmed = Daily.Confirmed) %>%
-  select(Confirmed)
+  dplyr::select(Confirmed)
 ```
 
 Initialize parameters:
@@ -119,7 +119,7 @@ Plot the results:
 
 ``` r
 plot(cov19est, type = "trace")
-plot(cov19est, type = "box")
+plot(cov19est, type = "boxplot")
 ```
 
 ## predict()
@@ -132,9 +132,9 @@ which first runs `SEIRfansy()` internally, and then predicts.
 ```
 
 ``` r
-cov19pred = predict(data = data_multinomial, init_pars = pars_start, 
+cov19pred = predict(data = train_multinom, init_pars = pars_start, 
                     data_init = data_initial, T_predict = 60, niter = 1e5, 
-                    BurnIn = 1e5, data_test = data_test, model = "Multinomial", 
+                    BurnIn = 1e5, data_test = test_multinom, model = "Multinomial", 
                     N = N, lambda = 1/(69.416 * 365), mu = 1/(69.416 * 365), 
                     period_start = phases, opt_num = 1, 
                     auto.initialize = TRUE, f = 0.15)
@@ -153,7 +153,9 @@ Plot the results:
 
 ``` r
 plot(cov19pred, type = "trace")
-plot(cov19pred, type = "box")
+plot(cov19pred, type = "boxplot")
+plot(cov19pred, type = "panel")
+plot(cov19pred, type = "cases")
 ```
 
 ### Current Suggested Citation

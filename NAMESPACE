@@ -23,5 +23,5 @@ importFrom(ggpubr, ggarrange)
 
 export(SEIRfansy)
 export(predict)
-export(plot.SEIRfansy)
-export(plot.SEIRfansyPredict)
+S3method(plot, SEIRfansy)
+S3method(plot, SEIRfansyPredict)

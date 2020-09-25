@@ -137,8 +137,8 @@ If interest is in model estimation and prediction, then use `predict()`, which f
 
 ```{r, eval = FALSE}
 cov19pred = predict(data = train_multinom, init_pars = pars_start, 
-                    data_init = data_initial, T_predict = 60, niter = 1e5, 
-                    BurnIn = 1e5, data_test = test_multinom, model = "Multinomial", 
+                    data_init = data_initial, T_predict = 60, niter = 1e3, 
+                    BurnIn = 1e2, data_test = test_multinom, model = "Multinomial", 
                     N = N, lambda = 1/(69.416 * 365), mu = 1/(69.416 * 365), 
                     period_start = phases, opt_num = 1, 
                     auto.initialize = TRUE, f = 0.15)

@@ -20,7 +20,6 @@ import(ggplot2)
 importFrom(grDevices, colorRampPalette)
 importFrom(DescTools, MixColor)
 importFrom(ggpubr, ggarrange)
-importFrom(base, rowMeans)
 
 export(SEIRfansy)
 export(predict)

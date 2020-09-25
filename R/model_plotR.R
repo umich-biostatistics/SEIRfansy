@@ -1,6 +1,6 @@
 
 model_plotR <- function(Result = NULL, mcmc_pars = NULL, T_predict = NULL, T_simu = NULL, n_period, data,
-                        data_test = NULL, data_initial, call, save_plots = TRUE, trace_plot.common_axis = FALSE, model = "Multinomial", ...){
+                        data_test = NULL, data_initial, call, trace_plot.common_axis = FALSE, model = "Multinomial", ...){
 
   if(call == "estimateR"){
     ## Trace plot
@@ -51,8 +51,8 @@ model_plotR <- function(Result = NULL, mcmc_pars = NULL, T_predict = NULL, T_sim
     if(trace_plot.common_axis == TRUE)
       trace_plot = trace_plot + facet_grid(variable_name ~ variable_index, scale = "free",labeller = label_parsed)
 
-    if(save_plots == TRUE)
-      ggsave("trace_plot.png", trace_plot, width = 3*n_period, height = 12, dpi = 300)
+    # if(save_plots == TRUE)
+    #   ggsave("trace_plot.png", trace_plot, width = 3*n_period, height = 12, dpi = 300)
 
     ## Plot - Reproduction number
 
@@ -92,8 +92,8 @@ model_plotR <- function(Result = NULL, mcmc_pars = NULL, T_predict = NULL, T_sim
       plot_annotation(caption = "* The diamond shapes indicate mean of the estimates",
                       theme = theme(plot.caption = element_text(size = 14)))
 
-    if(save_plots == TRUE)
-      ggsave("boxplot_R0.png", boxplot_R0, width = 8, height = 10, dpi = 300)
+    # if(save_plots == TRUE)
+    #   ggsave("boxplot_R0.png", boxplot_R0, width = 8, height = 10, dpi = 300)
 
     print(trace_plot)
     print(boxplot_R0)
@@ -236,8 +236,8 @@ model_plotR <- function(Result = NULL, mcmc_pars = NULL, T_predict = NULL, T_sim
       panel_plot_fit <- plot_total_case
     }
 
-    if(save_plots == TRUE)
-      ggsave("panel_plot_fit.png", panel_plot_fit, width = 12, height = 12, units = "in", dpi = 300)
+    # if(save_plots == TRUE)
+    #   ggsave("panel_plot_fit.png", panel_plot_fit, width = 12, height = 12, units = "in", dpi = 300)
 
     ## Plot - Undetected, Detected and False Negatives
 
@@ -273,8 +273,8 @@ model_plotR <- function(Result = NULL, mcmc_pars = NULL, T_predict = NULL, T_sim
       labs(title="Current Cases - Untested, Detected and False Negatives", x = "days from onset", y = "cases") +
       scale_y_continuous(labels = scales::comma)
 
-    if(save_plots == TRUE)
-      ggsave("plot_detected_undetected.png", plot_detected_undetected, width = 12, height = 10, units = "in", dpi = 300)
+    # if(save_plots == TRUE)
+    #   ggsave("plot_detected_undetected.png", plot_detected_undetected, width = 12, height = 10, units = "in", dpi = 300)
 
     print(panel_plot_fit)
     print(plot_detected_undetected)

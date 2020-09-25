@@ -33,6 +33,11 @@ install.packages('devtools')
 ```{r, eval = FALSE}
 # install SEIRfansy from Github:
 devtools::install_github('umich-biostatistics/SEIRfansy') 
+```
+
+Once installed, load the package:
+
+```{r, eval = TRUE}
 library(SEIRfansy)
 ```
 
@@ -44,7 +49,7 @@ For this example, we use the built-in package data set `covid19`, which contains
 
 You will need the `dplyr` package for this example.
 
-```{r, eval = FALSE}
+```{r, eval = TRUE}
 library(dplyr)
 ```
 
@@ -52,7 +57,7 @@ Training data set:
 
 For training data, we use cases from April 1 to June 30
 
-```{r, eval = FALSE}
+```{r, eval = TRUE}
 train = covid19[which(covid19$Date == "01 April "):which(covid19$Date == "30 June "),]
 ```
 
@@ -60,13 +65,13 @@ Testing data set:
 
 For testing data, we use cases from July 1 to July 31
 
-```{r, eval = FALSE}
+```{r, eval = TRUE}
 test = covid19[which(covid19$Date == "01 July "):which(covid19$Date == "31 July "),]
 ```
 
 Data format for multinomial and Poisson distribution:
 
-```{r, eval = FALSE}
+```{r, eval = TRUE}
 train_multinom = 
   train %>% 
   rename(Confirmed = Daily.Confirmed, 
@@ -89,7 +94,7 @@ train_pois =
 
 Initialize parameters:
 
-```{r, eval = FALSE}
+```{r, eval = TRUE}
 N = 1341e6 # population size of India
 data_initial = c(2059, 169, 58, 424, 9, 11)
 pars_start = c(c(1,0.8,0.6,0.4,0.2), c(0.2,0.2,0.2,0.25,0.2))
@@ -104,7 +109,7 @@ If interest is in model estimation but not prediction, then use `SEIRfansy()`. O
 ?SEIRfansy
 ```
 
-```{r, eval = FALSE}
+```{r, eval = TRUE}
 cov19est = SEIRfansy(data = train_multinom, init_pars = pars_start, 
                      data_init = data_initial, niter = 1e3, BurnIn = 1e2, 
                      model = "Multinomial", N = N, lambda = 1/(69.416 * 365), 
@@ -122,26 +127,26 @@ names(cov19est$plots)
 
 Plot the results:
 
-```{r, eval = FALSE}
+```{r, eval = TRUE}
 plot(cov19est, type = "trace")
 plot(cov19est, type = "boxplot")
 ```
 
-## predict()
+## SEIRfansy.predict()
 
 If interest is in model estimation and prediction, then use `predict()`, which first runs `SEIRfansy()` internally, and then predicts.
 
 ```{r, eval = FALSE}
-?predict
+?SEIRfansy.predict
 ```
 
-```{r, eval = FALSE}
-cov19pred = predict(data = train_multinom, init_pars = pars_start, 
-                    data_init = data_initial, T_predict = 60, niter = 1e3, 
-                    BurnIn = 1e2, data_test = test_multinom, model = "Multinomial", 
-                    N = N, lambda = 1/(69.416 * 365), mu = 1/(69.416 * 365), 
-                    period_start = phases, opt_num = 1, 
-                    auto.initialize = TRUE, f = 0.15)
+```{r, eval = TRUE}
+cov19pred = SEIRfansy.predict(data = train_multinom, init_pars = pars_start, 
+                              data_init = data_initial, T_predict = 60, niter = 1e3, 
+                              BurnIn = 1e2, data_test = test_multinom, model = "Multinomial", 
+                              N = N, lambda = 1/(69.416 * 365), mu = 1/(69.416 * 365), 
+                              period_start = phases, opt_num = 1, 
+                              auto.initialize = TRUE, f = 0.15)
 ```
 
 Inspect the results:
@@ -155,7 +160,7 @@ names(cov19pred$plots)
 
 Plot the results:
 
-```{r, eval = FALSE}
+```{r, eval = TRUE}
 plot(cov19pred, type = "trace")
 plot(cov19pred, type = "boxplot")
 plot(cov19pred, type = "panel")

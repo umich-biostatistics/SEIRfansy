@@ -76,8 +76,8 @@
 #'
 #' @examples
 
-predict <- function(data=NULL, data_init, init_pars = NULL, N, plot = TRUE, T_predict, period_start, estimate = TRUE,
-                           pars = NULL, data_test = NULL, auto.initialize = TRUE, ... ){
+SEIRfansy.predict <- function(data=NULL, data_init, init_pars = NULL, N, plot = TRUE, T_predict, period_start, estimate = TRUE,
+                              pars = NULL, data_test = NULL, auto.initialize = TRUE, ... ){
   if(estimate == FALSE && is.null(pars)) stop("Either supply parameters or set estimate = TRUE")
   if(estimate == FALSE){
     mcmc_pars = matrix(pars,nrow=1)

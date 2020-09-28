@@ -32,5 +32,4 @@ URL: https://github.com/umich-biostatistics/SEIRfansy
 BugReports: https://github.com/umich-biostatistics/SEIRfansy/issues
 RoxygenNote: 7.1.1
 Roxygen: list(markdown = TRUE)
-VignetteBuilder: 
-    knitr
+VignetteBuilder: knitr

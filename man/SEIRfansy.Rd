@@ -132,12 +132,51 @@ the plots in the directory folder.}
 A list with class "SEIRfansy", which contains the items described
 below:
 \itemize{
-\item{mcmc_pars}{a matrix of the mcmc draws for the parameters}
-\item{plots}{a list of ggplot objects}
+\item{mcmc_pars: }{a matrix of the mcmc draws for the parameters}
+\item{plots: }{a list of ggplot objects}
 }
 }
 \description{
 This function is used to estimate  the  different parameters of interest like
 the time varying transmission rates, proportion of reported cases, and the
 basic reproduction rates.
+}
+\examples{
+library(dplyr)
+train = covid19[which(covid19$Date == "01 April "):which(covid19$Date == "30 June "),]
+test = covid19[which(covid19$Date == "01 July "):which(covid19$Date == "31 July "),]
+
+train_multinom = 
+ train \%>\% 
+   rename(Confirmed = Daily.Confirmed, 
+          Recovered = Daily.Recovered,
+          Deceased = Daily.Deceased) \%>\%
+   dplyr::select(Confirmed, Recovered, Deceased)
+ 
+ test_multinom = 
+   test \%>\% 
+   rename(Confirmed = Daily.Confirmed, 
+          Recovered = Daily.Recovered,
+          Deceased = Daily.Deceased) \%>\%
+   dplyr::select(Confirmed, Recovered, Deceased)
+ 
+N = 1341e6 # population size of India
+data_initial = c(2059, 169, 58, 424, 9, 11)
+pars_start = c(c(1,0.8,0.6,0.4,0.2), c(0.2,0.2,0.2,0.25,0.2))
+phases = c(1,15,34,48,62)
+
+cov19est = SEIRfansy(data = train_multinom, init_pars = pars_start, 
+                     data_init = data_initial, niter = 1e3, BurnIn = 1e2, 
+                     model = "Multinomial", N = N, lambda = 1/(69.416 * 365), 
+                     mu = 1/(69.416 * 365), period_start = phases, opt_num = 1, 
+                     auto.initialize = TRUE, f = 0.15)
+
+names(cov19est)
+class(cov19est$mcmc_pars)
+names(cov19est$plots)
+
+plot(cov19est, type = "trace")
+plot(cov19est, type = "boxplot")
+
+
 }

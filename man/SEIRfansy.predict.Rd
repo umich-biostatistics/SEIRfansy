@@ -72,11 +72,54 @@ based initial parameter.}
 A list with class "SEIRfansyPredict", which contains the items described
 below:
 \itemize{
-\item{mcmc_pars}{a matrix of the mcmc draws for the parameters}
-\item{plots}{a list of ggplot objects}
+\item{mcmc_pars: }{a matrix of the mcmc draws for the parameters}
+\item{plots: }{a list of ggplot objects}
 }
 }
 \description{
 This function is used to predict the total reported as well as unreported case
 counts, total recovered, and total deaths
+}
+\examples{
+library(dplyr)
+train = covid19[which(covid19$Date == "01 April "):which(covid19$Date == "30 June "),]
+test = covid19[which(covid19$Date == "01 July "):which(covid19$Date == "31 July "),]
+
+train_multinom = 
+ train \%>\% 
+   rename(Confirmed = Daily.Confirmed, 
+          Recovered = Daily.Recovered,
+          Deceased = Daily.Deceased) \%>\%
+   dplyr::select(Confirmed, Recovered, Deceased)
+ 
+ test_multinom = 
+   test \%>\% 
+   rename(Confirmed = Daily.Confirmed, 
+          Recovered = Daily.Recovered,
+          Deceased = Daily.Deceased) \%>\%
+   dplyr::select(Confirmed, Recovered, Deceased)
+ 
+N = 1341e6 # population size of India
+data_initial = c(2059, 169, 58, 424, 9, 11)
+pars_start = c(c(1,0.8,0.6,0.4,0.2), c(0.2,0.2,0.2,0.25,0.2))
+phases = c(1,15,34,48,62)
+ 
+ cov19pred = SEIRfansy.predict(data = train_multinom, init_pars = pars_start, 
+                               data_init = data_initial, T_predict = 60, niter = 1e3, 
+                               BurnIn = 1e2, data_test = test_multinom, model = "Multinomial", 
+                               N = N, lambda = 1/(69.416 * 365), mu = 1/(69.416 * 365), 
+                               period_start = phases, opt_num = 1, 
+                               auto.initialize = TRUE, f = 0.15)
+
+names(cov19pred)
+class(cov19pred$prediction)
+class(cov19pred$mcmc_pars)
+names(cov19pred$plots)
+
+plot(cov19pred, type = "trace")
+plot(cov19pred, type = "boxplot")
+plot(cov19pred, type = "panel")
+plot(cov19pred, type = "cases")
+
+
 }

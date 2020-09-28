@@ -103,7 +103,7 @@ phases = c(1,15,34,48,62)
 
 ## SEIRfansy()
 
-If interest is in model estimation but not prediction, then use `SEIRfansy()`. Otherwise, use `predict()` (see below).
+If interest is in model estimation but not prediction, then use `SEIRfansy()`. Otherwise, use `SEIRfansy.predict()` (see below).
 
 ```{r, eval = FALSE}
 ?SEIRfansy
@@ -134,7 +134,7 @@ plot(cov19est, type = "boxplot")
 
 ## SEIRfansy.predict()
 
-If interest is in model estimation and prediction, then use `predict()`, which first runs `SEIRfansy()` internally, and then predicts.
+If interest is in model estimation and prediction, then use `SEIRfansy.predict()`, which first runs `SEIRfansy()` internally, and then predicts.
 
 ```{r, eval = FALSE}
 ?SEIRfansy.predict

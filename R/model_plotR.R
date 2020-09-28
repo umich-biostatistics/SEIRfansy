@@ -95,8 +95,8 @@ model_plotR <- function(Result = NULL, mcmc_pars = NULL, T_predict = NULL, T_sim
     # if(save_plots == TRUE)
     #   ggsave("boxplot_R0.png", boxplot_R0, width = 8, height = 10, dpi = 300)
 
-    print(trace_plot)
-    print(boxplot_R0)
+    #print(trace_plot)
+    #print(boxplot_R0)
     return(list("trace_plot" = trace_plot, "boxplot_R0" = boxplot_R0))
 
   }
@@ -276,8 +276,8 @@ model_plotR <- function(Result = NULL, mcmc_pars = NULL, T_predict = NULL, T_sim
     # if(save_plots == TRUE)
     #   ggsave("plot_detected_undetected.png", plot_detected_undetected, width = 12, height = 10, units = "in", dpi = 300)
 
-    print(panel_plot_fit)
-    print(plot_detected_undetected)
+    #print(panel_plot_fit)
+    #print(plot_detected_undetected)
 
     return(list("panel_plot_fit" = panel_plot_fit, "plot_detected_undetected" = plot_detected_undetected))
 

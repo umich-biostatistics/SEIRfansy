@@ -17,6 +17,7 @@ knitr::opts_chunk$set(
 # Extended Susceptible-Exposed-Infected-Recovery Model
 
 `r badger::badge_devel("umich-biostatistics/SIERfansy", "blue")` `r badger::badge_code_size("umich-biostatistics/SEIRfansy")`
+`r badger::badge_doi("https://doi.org/10.1101/2020.09.24.20200238", "orange") `
 
 ## Overview
 
@@ -169,4 +170,4 @@ plot(cov19pred, type = "cases")
 
 ### Current Suggested Citation
 
-
+Ritwik Bhaduri, Ritoban Kundu, Soumik Purkayastha, Mike Kleinsasser, Lauren J Beesley, Bhramar Mukherjee. "EXTENDING THE SUSCEPTIBLE-EXPOSED-INFECTED-REMOVED(SEIR) MODEL TO HANDLE THE HIGH FALSE NEGATIVE RATE AND SYMPTOM-BASED ADMINISTRATION OF COVID-19 DIAGNOSTIC TESTS: SEIR-fansy." medRxiv 2020.09.24.20200238; doi: https://doi.org/10.1101/2020.09.24.20200238

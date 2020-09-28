@@ -1,10 +1,10 @@
 Type: Package
 Package: SEIRfansy
 Title: Extended Susceptible-Exposed-Infected-Recovery Model
-Version: 1.0.0.9000
+Version: 0.1.0.9000
 Description: Extended Susceptible-Exposed-Infected-Recovery (SEIR) Model for 
     handling high false negative rate and symptom based administration of 
-    diagnostic tests.
+    diagnostic tests. <doi:https://doi.org/10.1101/2020.09.24.20200238>.
 Authors@R: c(
     person(given = "Ritwik", family = "Bhaduri", role = c("aut"), email = "ritwik.bhaduri@gmail.com"),
     person(given = "Ritoban", family = "Kundu", role = c("aut"), email = "ritoban.kundu@gmail.com"),

@@ -6,6 +6,13 @@
 \usage{
 \method{plot}{SEIRfansyPredict}(x, type, ...)
 }
+\arguments{
+\item{x}{SEIRfansyPredict object to plot}
+
+\item{type}{type of plot to render. Options are "trace", "boxplot", "panel", or "cases".}
+
+\item{...}{not currently used}
+}
 \description{
 This is a convenient wrapper for output that is already included in the
 predict output in the plots element. Options are panel and cases.

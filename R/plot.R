@@ -4,6 +4,10 @@
 #' This is a convenient wrapper for output that is already included in the 
 #' SEIRfansy output in the plots element. Options are trace or boxplot.
 #' 
+#' @param x SEIRfansy object to plot
+#' @param type type of plot to render. Options are "trace" or "boxplot".
+#' @param ... not currently used
+#' 
 #' @export
 plot.SEIRfansy = function(x, type, ...) {
   if(!(type %in% c("trace", "boxplot"))) stop("You must select one of trace or boxplot.")
@@ -18,6 +22,10 @@ plot.SEIRfansy = function(x, type, ...) {
 #'
 #' This is a convenient wrapper for output that is already included in the 
 #' predict output in the plots element. Options are panel and cases.
+#' 
+#' @param x SEIRfansyPredict object to plot
+#' @param type type of plot to render. Options are "trace", "boxplot", "panel", or "cases".
+#' @param ... not currently used
 #' 
 #' @export
 plot.SEIRfansyPredict = function(x, type, ...) {

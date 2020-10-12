@@ -20,14 +20,16 @@ LazyData: true
 Biarch: true
 Depends: 
     R (>= 3.5.1)
-Suggests:
+Imports:
     dplyr,
     arm,
     pbapply,
     DescTools,
     patchwork,
     ggpubr,
-    ggplot2
+    ggplot2,
+    knitr,
+    rlang
 URL: https://github.com/umich-biostatistics/SEIRfansy
 BugReports: https://github.com/umich-biostatistics/SEIRfansy/issues
 RoxygenNote: 7.1.1

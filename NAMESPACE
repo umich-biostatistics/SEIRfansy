@@ -21,6 +21,8 @@ importFrom(grDevices, colorRampPalette)
 importFrom(DescTools, MixColor)
 importFrom(ggpubr, ggarrange)
 importFrom(patchwork, plot_annotation)
+importFrom("stats", "quantile", "rmultinom")
+importFrom("utils", "tail")
 
 export(SEIRfansy)
 export(SEIRfansy.predict)

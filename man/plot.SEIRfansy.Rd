@@ -6,6 +6,13 @@
 \usage{
 \method{plot}{SEIRfansy}(x, type, ...)
 }
+\arguments{
+\item{x}{SEIRfansy object to plot}
+
+\item{type}{type of plot to render. Options are "trace" or "boxplot".}
+
+\item{...}{not currently used}
+}
 \description{
 This is a convenient wrapper for output that is already included in the
 SEIRfansy output in the plots element. Options are trace or boxplot.

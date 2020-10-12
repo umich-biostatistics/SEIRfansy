@@ -10,7 +10,7 @@ SEIRfansy(
   N,
   init_pars = NULL,
   niter = 1e+05,
-  BurnIn = 5000,
+  BurnIn = 1e+05,
   model = "Multinomial",
   plot = TRUE,
   period_start,

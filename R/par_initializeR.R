@@ -78,7 +78,7 @@ par_initializeR <- function(data,model="Multinomial", init_pars, period_start, i
      else{
        initial_param<-init_pars
      }
-      mle_opt <- try(optim(par = c(log(c(initial_param[1:n_period])),logit(c(initial_param[(n_period+1):(2*n_period)]))), f =  negLL_func,init_state_num = init_state_num,period_start=period_start,fix_pars=fix_pars, 
+      mle_opt <- try(optim(par = c(log(c(initial_param[1:n_period])),logit(c(initial_param[(n_period+1):(2*n_period)]))), fn =  negLL_func,init_state_num = init_state_num,period_start=period_start,fix_pars=fix_pars, 
                            ftime =  ftime,hessian = FALSE),silent=T)
       passed <- exists("mle_opt")
     } 

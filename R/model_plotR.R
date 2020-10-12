@@ -49,7 +49,7 @@ model_plotR <- function(Result = NULL, mcmc_pars = NULL, T_predict = NULL, T_sim
       scale_color_manual(values = trace_plot_colors) +
       scale_x_continuous(breaks = round(seq(0,nrow(pars_estimate), length = 3)))
     if(trace_plot.common_axis == TRUE)
-      trace_plot = trace_plot + facet_grid(variable_name ~ variable_index, scale = "free",labeller = label_parsed)
+      trace_plot = trace_plot + facet_grid(variable_name ~ variable_index, scales = "free",labeller = label_parsed)
 
     # if(save_plots == TRUE)
     #   ggsave("trace_plot.png", trace_plot, width = 3*n_period, height = 12, dpi = 300)

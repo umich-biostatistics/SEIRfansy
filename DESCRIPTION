@@ -19,7 +19,7 @@ Encoding: UTF-8
 LazyData: true
 Biarch: true
 Depends: 
-    R (>= 3.5.1)
+    R (>= 3.5.0)
 Imports:
     dplyr,
     arm,
@@ -29,7 +29,9 @@ Imports:
     ggpubr,
     ggplot2,
     knitr,
-    rlang
+    rlang,
+    magrittr,
+    scales
 URL: https://github.com/umich-biostatistics/SEIRfansy
 BugReports: https://github.com/umich-biostatistics/SEIRfansy/issues
 RoxygenNote: 7.1.1

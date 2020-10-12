@@ -54,7 +54,7 @@
 #'                 including "Multinomial", "Poisson", and "Binomial".}
 #'                 \item{alpha_p: }{0.5 (default): It is defined as the ratio of 
 #'                 rate of spread of infection by tested positive patients to that 
-#'                 by false negatives. We have taken $\alpha_p < 1$ as patients 
+#'                 by false negatives. We have taken $alpha_p < 1$ as patients 
 #'                 who are tested positive are subjected to quarantine where the 
 #'                 chance of spreading the disease is less than that of false 
 #'                 negative patients who are mostly unaware of their infectious nature. 
@@ -62,28 +62,28 @@
 #'                 freely at a higher rate than tested positive individuals.}
 #'                 \item{alpha_u: }{0.7 (default): It is defined as the  scaling 
 #'                 factor for the rate of spread of infection by untested individuals. 
-#'                 $\alpha_u$ is assumed to be < 1 as U mostly consists of 
+#'                 $alpha_u$ is assumed to be < 1 as U mostly consists of 
 #'                 asymptomatic or mildly symptomatic cases who are known to spread 
 #'                 the disease at a much lower rate than those with higher levels 
 #'                 of symptoms.}
 #'                 \item{beta_1: }{0.6 (default): It is the scaling factor for 
-#'                 rate of recovery  for untested individuals. $\beta_1$ is  
+#'                 rate of recovery  for untested individuals. $beta_1$ is  
 #'                 assumed to be less than 1. The condition of Untested individuals 
 #'                 is not so severe as they consist of mostly asymptomatic people. 
 #'                 So, they are assumed to recover faster than the Current Positive ones.}
 #'                 \item{beta_2: }{0.7 (default): It is the inverse of the scaling 
 #'                 factor for rate of recovery for false negative individuals.  
-#'                 $\beta_2$ is assumed to be less than 1. It is assumed that the 
+#'                 $beta_2$ is assumed to be less than 1. It is assumed that the 
 #'                 recovery rate is slower than the detected ones for the False 
 #'                 Negative ones because they are not getting any hospital 
 #'                 treatment.}
 #'                 \item{delta_1: }{0.3 (default): It is the scaling factor for 
-#'                 death rate for undetected individuals. $\delta_1$ is assumed 
+#'                 death rate for undetected individuals. $delta_1$ is assumed 
 #'                 to be less than 1. Similarly, for the Untested ones, the death 
 #'                 rate is taken to be lesser because they are mostly asymptomatic. 
 #'                 So, their probability of dying is much less.}
 #'                 \item{delta_2: }{0.7 (default): It is the inverse of the scaling 
-#'                 factor for death rate for false negative individuals. $\delta_2$ 
+#'                 factor for death rate for false negative individuals. $delta_2$ 
 #'                 is assumed to be less than 1. Same as before, the death rate for 
 #'                 False Negative ones are assumed to be higher than the Current 
 #'                 detected Positive as they are not receiving proper treatment.}

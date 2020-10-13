@@ -147,7 +147,7 @@
 #' data_initial = c(2059, 169, 58, 424, 9, 11)
 #' pars_start = c(c(1,0.8,0.6,0.4,0.2), c(0.2,0.2,0.2,0.25,0.2))
 #' phases = c(1,15,34,48,62)
-#'  
+#'  \donttest{
 #'  cov19pred = SEIRfansy.predict(data = train_multinom, init_pars = pars_start, 
 #'                                data_init = data_initial, T_predict = 60, niter = 1e3, 
 #'                                BurnIn = 1e2, data_test = test_multinom, model = "Multinomial", 
@@ -164,6 +164,15 @@
 #' plot(cov19pred, type = "boxplot")
 #' plot(cov19pred, type = "panel")
 #' plot(cov19pred, type = "cases")
+#' }
+#' 
+#' # quick test for package check
+#' cov19pred = SEIRfansy.predict(data = train_multinom, init_pars = pars_start, 
+#'                                data_init = data_initial, T_predict = 60, niter = 1000, 
+#'                                BurnIn = 150, data_test = test_multinom, model = "Multinomial", 
+#'                                N = N, lambda = 1/(69.416 * 365), mu = 1/(69.416 * 365), 
+#'                                period_start = phases, opt_num = 1, 
+#'                                auto.initialize = TRUE, f = 0.15)
 #' 
 #' 
 

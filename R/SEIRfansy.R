@@ -154,8 +154,9 @@
 #' }
 #' 
 #' # quick test for package check
+#' # quick test for package check
 #' cov19est = SEIRfansy(data = train_multinom, init_pars = pars_start, 
-#'                      data_init = data_initial, niter = 100, BurnIn = 1e2, 
+#'                      data_init = data_initial, niter = 1000, BurnIn = 150, 
 #'                      model = "Multinomial", N = N, lambda = 1/(69.416 * 365), 
 #'                      mu = 1/(69.416 * 365), period_start = phases, opt_num = 1, 
 #'                      auto.initialize = TRUE, f = 0.15)
@@ -185,7 +186,7 @@ SEIRfansy <- function(data, data_init,N, init_pars = NULL, niter = 1e5, BurnIn =
 
   if(length(data_init) != 6) stop("Incorrect initial values: length must be 6")
 
-  if(any(data < 0) || data_init < 0) stop("Negative values in data")
+  if(any(data < 0) || any(data_init < 0)) stop("Negative values in data")
 
   var_init = model_initializeR(data = data, data_init = data_init, init_pars = init_pars, model = model,
                                period_start = period_start, auto.initialize = auto.initialize, ...)

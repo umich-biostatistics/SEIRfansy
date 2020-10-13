@@ -2,9 +2,9 @@ Type: Package
 Package: SEIRfansy
 Title: Extended Susceptible-Exposed-Infected-Recovery Model
 Version: 1.1.0
-Description: Extended Susceptible-Exposed-Infected-Recovery (SEIR) Model for 
+Description: Extended Susceptible-Exposed-Infected-Recovery Model for 
     handling high false negative rate and symptom based administration of 
-    diagnostic tests. <doi:https://doi.org/10.1101/2020.09.24.20200238>.
+    diagnostic tests. <doi:10.1101/2020.09.24.20200238>.
 Authors@R: c(
     person(given = "Ritwik", family = "Bhaduri", role = c("aut"), email = "ritwik.bhaduri@gmail.com"),
     person(given = "Ritoban", family = "Kundu", role = c("aut"), email = "ritoban.kundu@gmail.com"),
@@ -36,4 +36,3 @@ URL: https://github.com/umich-biostatistics/SEIRfansy
 BugReports: https://github.com/umich-biostatistics/SEIRfansy/issues
 RoxygenNote: 7.1.1
 Roxygen: list(markdown = TRUE)
-VignetteBuilder: knitr

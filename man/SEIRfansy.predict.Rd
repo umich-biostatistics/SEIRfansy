@@ -197,12 +197,19 @@ plot(cov19pred, type = "panel")
 plot(cov19pred, type = "cases")
 }
 
+
+
+
+
+
+
 # quick test for package check
+# not for use outside CRAN check()
 cov19est = SEIRfansy(data = train_multinom, init_pars = pars_start, 
                      data_init = data_initial, niter = 33, BurnIn = 18, 
                      model = "Multinomial", N = N, lambda = 1/(69.416 * 365), 
                      mu = 1/(69.416 * 365), period_start = phases, opt_num = 1, 
-                     auto.initialize = TRUE, f = 0.15, plot = FALSE)
+                     auto.initialize = TRUE, f = 0.15, plot = FALSE, system_test = NULL)
 
 
 }

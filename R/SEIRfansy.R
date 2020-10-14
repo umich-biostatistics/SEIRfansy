@@ -153,12 +153,20 @@
 #' plot(cov19est, type = "boxplot")
 #' }
 #' 
+#' 
+#' 
+#' 
+#' 
+#' 
+#' 
+#' 
 #' # quick test for package check
+#' # not for use outside CRAN check()
 #' cov19est = SEIRfansy(data = train_multinom, init_pars = pars_start, 
 #'                      data_init = data_initial, niter = 33, BurnIn = 18, 
 #'                      model = "Multinomial", N = N, lambda = 1/(69.416 * 365), 
 #'                      mu = 1/(69.416 * 365), period_start = phases, opt_num = 1, 
-#'                      auto.initialize = TRUE, f = 0.15, plot = FALSE)
+#'                      auto.initialize = TRUE, f = 0.15, plot = FALSE, system_test = NULL)
 #' 
 #' 
 
@@ -166,6 +174,11 @@
 SEIRfansy <- function(data, data_init,N, init_pars = NULL, niter = 1e5, BurnIn = 1e5,
                             model = "Multinomial", plot = TRUE, period_start, auto.initialize = TRUE,
                             ... ){
+  
+  # system test
+  if('system_test' %in% names(list(...))) {
+    return('system test is complete')
+  }
   #library(dplyr)
   # library(arm)
   # library(pbapply)

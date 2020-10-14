@@ -199,7 +199,7 @@ plot(cov19pred, type = "cases")
 
 # quick test for package check
 cov19est = SEIRfansy(data = train_multinom, init_pars = pars_start, 
-                     data_init = data_initial, niter = 103, BurnIn = 23, 
+                     data_init = data_initial, niter = 33, BurnIn = 18, 
                      model = "Multinomial", N = N, lambda = 1/(69.416 * 365), 
                      mu = 1/(69.416 * 365), period_start = phases, opt_num = 1, 
                      auto.initialize = TRUE, f = 0.15, plot = FALSE)

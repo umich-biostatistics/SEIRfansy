@@ -71,8 +71,8 @@ model_initializeR <- function(data=NULL, data_init, init_pars, model = "Multinom
   E0 = init.exposed.ratio*(U0 + P0 + F0)
   #initial number of susceptible individuals
   S0 = N - (E0 + U0 + P0 + F0 + RU0 + RR0 + DU0 + DR0)
-  # initial states c(S = S0, E = E0, U = U0, P = P0, F = F0, RU = RU0, RR = RR0, DU = DU0, DR = DR0)
-  yinit = c("S" = S0, "E" = E0, "U" = U0, "P" = P0, "F" = F0, "RU" = RU0, "RR" = RR0, "DU" = DU0, "DR" = DR0)
+  # initial states c(S = S0, E = E0, U = U0, P = P0, Fa = F0, RU = RU0, RR = RR0, DU = DU0, DR = DR0)
+  yinit = c("S" = S0, "E" = E0, "U" = U0, "P" = P0, "Fa" = F0, "RU" = RU0, "RR" = RR0, "DU" = DU0, "DR" = DR0)
 
   if(period_start[1] != 1){
     period_start = c(1, period_start)

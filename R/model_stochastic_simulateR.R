@@ -23,14 +23,14 @@ model_stochastic_simulateR <- function(init_obs_current, init_obs_daily, period_
     E = old_values[2]
     U = old_values[3]
     P = old_values[4]
-    F = old_values[5]
+    Fa = old_values[5]
     RU = old_values[6]
     RR = old_values[7]
     DU = old_values[8]
     DR = old_values[9]
     ##
     
-    pS_vec <- c( b * (alpha_p * P + alpha_u * U + F) / N , mu, 1 -  b * (alpha_p * P + alpha_u * U + F) / N - mu)
+    pS_vec <- c( b * (alpha_p * P + alpha_u * U + Fa) / N , mu, 1 -  b * (alpha_p * P + alpha_u * U + Fa) / N - mu)
     sample_S <- rmultinom(1, size = S, prob = pS_vec)
     ##
     pE_vec <- c((1-r) / De, r * (1-f) / De, r*f/De, mu,1 - 1 / De - mu)
@@ -44,7 +44,7 @@ model_stochastic_simulateR <- function(init_obs_current, init_obs_daily, period_
     sample_P <- rmultinom(1, size = P, prob = pP_vec)
     ##
     pF_vec <- c(beta_2 / Dr, mu_c/delta_2,mu,1 -beta_2 / Dr- mu_c/delta_2-mu)
-    sample_F <- rmultinom(1, size = F, prob = pF_vec)
+    sample_F <- rmultinom(1, size = Fa, prob = pF_vec)
     ##
     pRU_vec <- c( mu,1-mu)
     sample_RU <- rmultinom(1, size = RU, prob = pRU_vec)

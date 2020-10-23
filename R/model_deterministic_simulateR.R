@@ -23,21 +23,21 @@ model_deterministic_simulateR <- function(init_obs, period_start, times, pars, f
     E = old_values[2]
     U = old_values[3]
     P = old_values[4]
-    F = old_values[5]
+    Fa = old_values[5]
     RU = old_values[6]
     RR = old_values[7]
     DU = old_values[8]
     DR = old_values[9] 
     ## new values
     
-    S_new = S - b * S * (alpha_p * P + alpha_u * U + F) / N + lambda * N - mu * S
-    E_new = E + b * S * (alpha_p * P + alpha_u * U + F) / N - E / De - mu * E
+    S_new = S - b * S * (alpha_p * P + alpha_u * U + Fa) / N + lambda * N - mu * S
+    E_new = E + b * S * (alpha_p * P + alpha_u * U + Fa) / N - E / De - mu * E
     U_new = U + (1 - r) * E / De - U / (beta_1 * Dr) - delta_1 * mu_c * U - mu * U
     P_new = P + r * (1 - f) * E / De - P / Dr - mu_c * P - mu * P
-    F_new = F + r * f * E / De - F * beta_2 / Dr - mu_c * F / delta_2 - mu * F
-    RU_new <- RU + U / (beta_1 * Dr) + F * beta_2 / Dr - mu * RU
+    F_new = Fa + r * f * E / De - Fa * beta_2 / Dr - mu_c * Fa / delta_2 - mu * Fa
+    RU_new <- RU + U / (beta_1 * Dr) + Fa * beta_2 / Dr - mu * RU
     RR_new <- RR + P / Dr - mu * RR
-    DU_new <- DU + delta_1 * mu_c * U + mu_c * F / delta_2
+    DU_new <- DU + delta_1 * mu_c * U + mu_c * Fa / delta_2
     DR_new <- DR + mu_c * P 
     est_P_new_n <- E
     est_P_new_prob <- r * (1 - f) / De 

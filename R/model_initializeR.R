@@ -83,11 +83,11 @@ model_initializeR <- function(data=NULL, data_init, init_pars, model = "Multinom
     init_pars = par_initializeR(data = data, data_init = data_init, init_pars = init_pars, fix_pars = fix_pars,
                                 opt_num = opt_num,period_start=period_start,init_state_num = yinit, model = model,
                                 ...)[3:(2*n_period+2)]
-    message(" " , fill = TRUE)
-    message("MLE estimates : " , fill = TRUE)
-    message("beta = (", paste0(round(init_pars[1:n_period],2), collapse = ", "), ")", fill = TRUE)
-    message("r = (", paste0(round(init_pars[n_period + 1:n_period],3), collapse = ", "), ")", fill = TRUE)
-    message(" " , fill = TRUE)
+    message(" ")
+    message("MLE estimates : ")
+    message("beta = (", paste0(round(init_pars[1:n_period],2), collapse = ", "), ")")
+    message("r = (", paste0(round(init_pars[n_period + 1:n_period],3), collapse = ", "), ")")
+    message(" ")
   }
   else{
     if(is.null(init_pars) && !override){

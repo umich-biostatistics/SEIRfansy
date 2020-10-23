@@ -189,8 +189,8 @@ SEIRfansy.predict <- function(data=NULL, data_init, init_pars = NULL, N, plot = 
   if(estimate == FALSE){
     mcmc_pars = matrix(pars,nrow=1)
   }  else{
-    message("Estimating ... ", fill = TRUE)
-    message("  ", fill = TRUE)
+    message("Estimating ... ")
+    message("  ")
     mcmc_estimate = SEIRfansy(data = data, data_init = data_init, init_pars = init_pars, N = N,
                                     period_start = period_start, plot = plot, auto.initialize = auto.initialize,...)
     mcmc_pars = mcmc_estimate$mcmc_pars
@@ -204,9 +204,9 @@ SEIRfansy.predict <- function(data=NULL, data_init, init_pars = NULL, N, plot = 
   period_start = var_init$period_start
 
   #library(pbapply)
-  message(" ", fill = TRUE)
-  message("Predicting ... ", fill = TRUE)
-  pboptions(type="txt", char="|")
+  message(" ")
+  message("Predicting ... ")
+  #pboptions(type="txt", char="|")
   T_train=ifelse(is.null(data),0,nrow(data))
   prediction <- pbapply(matrix(mcmc_pars[, 1:(2*length(period_start))],nrow=nrow(mcmc_pars)), 1, function(x)
     model_stochastic_simulateR(init_obs_current = init_state_num, init_obs_daily = data_init[4:6], period_start = period_start,

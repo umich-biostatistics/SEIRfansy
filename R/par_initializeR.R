@@ -23,7 +23,7 @@ par_initializeR <- function(data,model="Multinomial", init_pars, period_start, i
     p <- c()
     if(model=="Poisson"){
       ypred <-  p_new_pred_n  *  p_new_pred_prob 
-      p<-try(dpois(data$Confirmed, round(ypred),log=T),silent=T)
+      p<-try(dpois(data$Confirmed, round(ypred),log=TRUE),silent=TRUE)
       if(any(is.nan(p))||any(p==-Inf)){
         logL <- -Inf
       }
@@ -32,7 +32,7 @@ par_initializeR <- function(data,model="Multinomial", init_pars, period_start, i
       }
     }
     else if(model=="Binomial"){
-      p <- dbinom(data$Confirmed,round( p_new_pred_n), p_new_pred_prob, log = T)
+      p <- dbinom(data$Confirmed,round( p_new_pred_n), p_new_pred_prob, log = TRUE)
       if(any(p == -Inf) || any(is.nan(p))){
         logL <- -Inf
       }else{
@@ -41,7 +41,7 @@ par_initializeR <- function(data,model="Multinomial", init_pars, period_start, i
     }
     else if(model=="Multinomial"){
       for(i in 1:dim(ypred)[1]){
-        p[i] = try(dbinom(data$Confirmed[i], round(p_new_pred_n[i]) , p_new_pred_prob[i], log = T),silent=T)
+        p[i] = try(dbinom(data$Confirmed[i], round(p_new_pred_n[i]) , p_new_pred_prob[i], log = TRUE),silent=TRUE)
         
         obs_size = data$Confirmed[max(i - 1, 1)]
         pred_size = round(ypred[max(i - 1, 1),"P"])
@@ -52,7 +52,7 @@ par_initializeR <- function(data,model="Multinomial", init_pars, period_start, i
         else{
           p[i] = p[i] + try(dmultinom(c(round(c(data$Recovered[i], data$Deceased[i])), pred_size - (data$Recovered[i] + data$Deceased[i])),
                                       pred_size, c(r_new_pred_prob[i], d_new_pred_prob[i], 1-r_new_pred_prob[i]-d_new_pred_prob[i]),
-                                      log = T),silent=T)
+                                      log = TRUE),silent=TRUE)
         }
       }
       if(any(p ==-Inf) || any(is.nan(p))){
@@ -68,7 +68,7 @@ par_initializeR <- function(data,model="Multinomial", init_pars, period_start, i
   result_mat <- matrix(NA, opt_num, n_period * 2 + 2)
   colnames(result_mat) <- c("likelihood", "convergence", unlist(lapply(c("b","r") , function(y) lapply(1:n_period, function(x) paste(y,x, sep = "")))))
   result_mat[, 1] <- -Inf
-  cat("Finding MLE", fill = T)
+  message("Finding MLE")
   for(i in 1:opt_num) {
     passed <- FALSE
     while (!passed) {
@@ -79,15 +79,15 @@ par_initializeR <- function(data,model="Multinomial", init_pars, period_start, i
        initial_param<-init_pars
      }
       mle_opt <- try(optim(par = c(log(c(initial_param[1:n_period])),logit(c(initial_param[(n_period+1):(2*n_period)]))), fn =  negLL_func,init_state_num = init_state_num,period_start=period_start,fix_pars=fix_pars, 
-                           ftime =  ftime,hessian = FALSE),silent=T)
+                           ftime =  ftime,hessian = FALSE),silent=TRUE)
       passed <- exists("mle_opt")
     } 
     
-    try(result_mat[i, 1] <- mle_opt$value,silent=T)
-    try(result_mat[i, 2] <- mle_opt$convergence,silent=T)
-    try(result_mat[i, (3:(n_period+2))] <- exp(mle_opt$par[1:n_period]),silent=T)
-    try(result_mat[i,(n_period+3):(2*n_period+2)]<-invlogit(mle_opt$par[(n_period+1):(2*n_period)]),silent=T)
-    cat(i, "MLE run finished!", fill = T)
+    try(result_mat[i, 1] <- mle_opt$value,silent=TRUE)
+    try(result_mat[i, 2] <- mle_opt$convergence,silent=TRUE)
+    try(result_mat[i, (3:(n_period+2))] <- exp(mle_opt$par[1:n_period]),silent=TRUE)
+    try(result_mat[i,(n_period+3):(2*n_period+2)]<-invlogit(mle_opt$par[(n_period+1):(2*n_period)]),silent=TRUE)
+    message(i, " MLE run finished!")
     rm(mle_opt)
   }
   result <- result_mat[which(result_mat[, 1] == min(result_mat[which(result_mat[,1]!=-Inf,1)]))[1], ]

@@ -68,7 +68,7 @@ par_initializeR <- function(data,model="Multinomial", init_pars, period_start, i
   result_mat <- matrix(NA, opt_num, n_period * 2 + 2)
   colnames(result_mat) <- c("likelihood", "convergence", unlist(lapply(c("b","r") , function(y) lapply(1:n_period, function(x) paste(y,x, sep = "")))))
   result_mat[, 1] <- -Inf
-  cat("Finding MLE", fill = TRUE)
+  message("Finding MLE", fill = TRUE)
   for(i in 1:opt_num) {
     passed <- FALSE
     while (!passed) {
@@ -87,7 +87,7 @@ par_initializeR <- function(data,model="Multinomial", init_pars, period_start, i
     try(result_mat[i, 2] <- mle_opt$convergence,silent=TRUE)
     try(result_mat[i, (3:(n_period+2))] <- exp(mle_opt$par[1:n_period]),silent=TRUE)
     try(result_mat[i,(n_period+3):(2*n_period+2)]<-invlogit(mle_opt$par[(n_period+1):(2*n_period)]),silent=TRUE)
-    cat(i, "MLE run finished!", fill = TRUE)
+    message(i, "MLE run finished!", fill = TRUE)
     rm(mle_opt)
   }
   result <- result_mat[which(result_mat[, 1] == min(result_mat[which(result_mat[,1]!=-Inf,1)]))[1], ]

@@ -141,7 +141,8 @@ initial parameter.}
 the trace plot for the convergence of the MCMC estimated time
 varying parameters.}
 \item{save plot: }{TRUE (default): It is the option for saving
-the plots in the directory folder.}}}
+the plots in the directory folder.}
+}}
 }
 \value{
 A list with class "SEIRfansyPredict", which contains the items described

@@ -82,7 +82,7 @@ mcmc_performR <- function(data, period_start, init_state_num, init_pars, fix_par
   ## Start MCMC
   pars_now <- init_pars
   
-  cat("MCMC:", fill = TRUE) 
+  message("MCMC:", fill = TRUE) 
   for(i in 2:(niter + BurnIn)){
     pars_new <- rep(0, 2*n_period)
     for(j in 1:(2*n_period)){
@@ -107,7 +107,7 @@ mcmc_performR <- function(data, period_start, init_state_num, init_pars, fix_par
       pmat[(i / trace_num) + 1, ((2*n_period)+1):(3*n_period)] <- R0_est
       
     }
-    if(i%%(niter/10) == 0) cat("Iter", i, " A =", round(A, digits=4), " : ", round(pars_now, digits=4), fill = TRUE)
+    if(i%%(niter/10) == 0) message("Iter", i, " A =", round(A, digits=4), " : ", round(pars_now, digits=4), fill = TRUE)
     
   }
   mcmc_estimates = pmat[-c(1:(BurnIn / trace_num + 1)), ]

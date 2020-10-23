@@ -24,7 +24,7 @@ mcmc_performR <- function(data, period_start, init_state_num, init_pars, fix_par
     p <- c()
     if(model=="Poisson"){
       ypred <-  p_new_pred_n  *  p_new_pred_prob 
-      p<-try(dpois(data$Confirmed, round(ypred),log=T),silent=T)
+      p<-try(dpois(data$Confirmed, round(ypred),log=TRUE),silent=TRUE)
       if(any(is.nan(p))||any(p==-Inf)){
         logL <- -Inf
       }
@@ -33,7 +33,7 @@ mcmc_performR <- function(data, period_start, init_state_num, init_pars, fix_par
       }
     }
     else if(model=="Binomial"){
-      p <- try(dbinom(data$Confirmed,round( p_new_pred_n), p_new_pred_prob, log = T),silent = T)
+      p <- try(dbinom(data$Confirmed,round( p_new_pred_n), p_new_pred_prob, log = TRUE),silent = TRUE)
       if(any(p == -Inf) || any(is.nan(p))){
         logL <- -Inf
       }else{
@@ -42,7 +42,7 @@ mcmc_performR <- function(data, period_start, init_state_num, init_pars, fix_par
     }
     else if(model=="Multinomial"){
       for(i in 1:dim(ypred)[1]){
-      p[i] = try(dbinom(data$Confirmed[i], round(p_new_pred_n[i]) , p_new_pred_prob[i], log = T),silent =T)
+      p[i] = try(dbinom(data$Confirmed[i], round(p_new_pred_n[i]) , p_new_pred_prob[i], log = TRUE),silent =TRUE)
       obs_size = data$Confirmed[max(i - 1, 1)]
       pred_size = round(ypred[max(i - 1, 1),"P"])
       if((data$Recovered[i] + data$Deceased[i]) > pred_size){
@@ -51,7 +51,7 @@ mcmc_performR <- function(data, period_start, init_state_num, init_pars, fix_par
       else{
         p[i] = p[i] + try(dmultinom(c(round(c(data$Recovered[i], data$Deceased[i])), pred_size - (data$Recovered[i] + data$Deceased[i])),
                                 pred_size, c(r_new_pred_prob[i], d_new_pred_prob[i], 1-r_new_pred_prob[i]-d_new_pred_prob[i]),
-                                log = T),silent=T)
+                                log = TRUE),silent=TRUE)
       }
     }
     if(any(p == -Inf) || any(is.nan(p))){
@@ -82,7 +82,7 @@ mcmc_performR <- function(data, period_start, init_state_num, init_pars, fix_par
   ## Start MCMC
   pars_now <- init_pars
   
-  cat("MCMC:", fill = T) 
+  cat("MCMC:", fill = TRUE) 
   for(i in 2:(niter + BurnIn)){
     pars_new <- rep(0, 2*n_period)
     for(j in 1:(2*n_period)){
@@ -107,7 +107,7 @@ mcmc_performR <- function(data, period_start, init_state_num, init_pars, fix_par
       pmat[(i / trace_num) + 1, ((2*n_period)+1):(3*n_period)] <- R0_est
       
     }
-    if(i%%(niter/10) == 0) cat("Iter", i, " A =", round(A, digits=4), " : ", round(pars_now, digits=4), fill = T)
+    if(i%%(niter/10) == 0) cat("Iter", i, " A =", round(A, digits=4), " : ", round(pars_now, digits=4), fill = TRUE)
     
   }
   mcmc_estimates = pmat[-c(1:(BurnIn / trace_num + 1)), ]

@@ -204,6 +204,8 @@ SEIRfansy.predict <- function(data=NULL, data_init, init_pars = NULL, N, plot = 
   period_start = var_init$period_start
 
   #library(pbapply)
+  pbo <- pboptions(type = "none")
+  on.exit(pboptions(pbo))
   message(" ")
   message("Predicting ... ")
   #pboptions(type="txt", char="|")

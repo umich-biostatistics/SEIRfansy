@@ -1,5 +1,5 @@
 
-par_initializeR <- function(data,model="Multinomial", init_pars, period_start, init_state_num, fix_pars, opt_num = 100,... ) {
+par_initializeR <- function(data,model="Multinomial", init_pars, period_start, init_state_num, fix_pars, opt_num = 500,... ) {
  
   if(period_start[1]==1){
     n_period=length(period_start)
@@ -80,8 +80,12 @@ par_initializeR <- function(data,model="Multinomial", init_pars, period_start, i
      }
       mle_opt <- try(optim(par = c(log(c(initial_param[1:n_period])),logit(c(initial_param[(n_period+1):(2*n_period)]))), fn =  negLL_func,init_state_num = init_state_num,period_start=period_start,fix_pars=fix_pars, 
                            ftime =  ftime,hessian = FALSE),silent=TRUE)
-      passed <- exists("mle_opt")
+      passed <- (class(mle_opt) != "try-error")
     } 
+    
+    if(class(mle_opt) == "try-error"){
+      next
+    }
     
     try(result_mat[i, 1] <- mle_opt$value,silent=TRUE)
     try(result_mat[i, 2] <- mle_opt$convergence,silent=TRUE)

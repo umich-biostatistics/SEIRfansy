@@ -3,7 +3,7 @@ model_initializeR <- function(data=NULL, data_init, init_pars, model = "Multinom
                   alpha_p = 0.5, alpha_u = 0.7, beta_1 = 0.6, beta_2 = 0.7, delta_1 = 0.3, delta_2 = 0.7,
                   lambda = 1 / (66.26 * 365), mu = 1 / (66.26 * 365), D_d = 17.8, De = 5.2,
                   Dr = 17.8, f = 0.15, mCFR = NULL, init.exposed.ratio = 3, init.confirmed.ratio = 0.15,
-                  auto.initialize = TRUE,opt_num=100, override = FALSE, ... ){
+                  auto.initialize = TRUE,opt_num=500, override = FALSE, ... ){
   if(data_init[1]==0){
     stop("Please enter a non-zero value for the initial number of  total confirmed cases. A suggestion is replace 0 by 1 ")
   }

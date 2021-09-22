@@ -1,7 +1,7 @@
 Type: Package
 Package: SEIRfansy
 Title: Extended Susceptible-Exposed-Infected-Recovery Model
-Version: 1.1.0
+Version: 1.1.1
 Description: Extended Susceptible-Exposed-Infected-Recovery Model for 
     handling high false negative rate and symptom based administration of 
     diagnostic tests. <doi:10.1101/2020.09.24.20200238>.
@@ -11,9 +11,9 @@ Authors@R: c(
     person(given = "Soumik", family = "Purkayastha", role = c("aut"), email = "soumikp@umich.edu"),
     person(given = "Lauren", family = "Beesley", role = c("aut"), email = "lbeesley@umich.edu"),
     person(given = "Bhramar", family = "Mukherjee", role = c("aut"), email = "bhramar@umich.edu"),
-    person(given = "Michael", family = "Kleinsasser", role = c("cre"), email = "mkleinsa@umich.edu")
+    person(given = "Michael", family = "Kleinsasser", role = c("cre"), email = "biostat-cran-manager@umich.edu")
     )
-Maintainer: Michael Kleinsasser <mkleinsa@umich.edu>
+Maintainer: Michael Kleinsasser <biostat-cran-manager@umich.edu>
 License: GPL-2
 Encoding: UTF-8
 LazyData: true
